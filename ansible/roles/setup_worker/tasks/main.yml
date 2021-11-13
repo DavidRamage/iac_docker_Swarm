@@ -1,0 +1,9 @@
+---
+- name: See if worker node is in swarm mode
+  shell: 'sudo docker info | grep "Swarm: active"'
+  register: swarm_status
+  ignore_errors: true
+
+- name: Add worker node to swarm
+  shell: "docker swarm join --token {{ hostvars['manager']['worker_token']['stdout'] }} {{ hostvars['manager']['ansible_default_ipv4']['address'] }}"
+  when: swarm_status.rc != 0

@@ -1,0 +1,20 @@
+---
+- name: Add the Docker repo
+  yum_repository:
+    name: docker-ce-stable
+    baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    gpgcheck: yes
+    description: Repo for Docker
+  
+- name: Install Docker
+  ansible.builtin.yum:
+    name: docker-ce
+    state: latest
+    update_cache: yes
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes

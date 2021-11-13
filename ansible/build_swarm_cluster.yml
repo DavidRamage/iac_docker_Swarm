@@ -1,0 +1,34 @@
+---
+- name: Install Docker
+  hosts: all
+  become: true
+  roles:
+    - install_docker
+- name: Set up Docker Swarm management node
+  hosts: managers
+  become: true
+  roles:
+    - setup_manager
+- name: Set up Docker Swarm worker nodes
+  hosts: workers
+  become: true
+  roles:
+    - setup_worker
+
+- name: Install Docker on all nodes in the cluster
+  hosts: all
+  become: true
+  roles:
+    - install_docker
+
+- name: Set up the cluster manager
+  hosts: managers
+  become: true
+  roles:
+    - setup_manager
+
+- name: Set up the workers
+  hosts: workers
+  become: true
+  roles:
+    - setup_worker
