@@ -1,10 +1,10 @@
 variable "num_swarm_hosts" {
-  type = number
+  type    = number
   default = 3
 }
 
 variable "aws_region" {
-  type = string
+  type    = string
   default = "us-west-2"
 }
 
@@ -21,7 +21,7 @@ variable "private_key_path" {
 }
 
 variable "instance_size" {
-  type = string
+  type    = string
   default = "t3.micro"
 }
 
